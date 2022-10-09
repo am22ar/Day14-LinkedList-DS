@@ -104,7 +104,30 @@ public class LinkedList {
 		}
 		return null;
 	}
-
+	
+	public void insertElement(Object input , Object value)
+	{
+		Node newNode = new Node(value);
+		Node temp = head;
+		
+		int index = 0;
+		while(temp.data != input)
+		{
+			index++;
+			temp = temp.ref;
+		}
+		Node left = head;
+		Node right = left.ref;
+		int index1 =0;
+		while(index1 < index)
+		{
+			index1++;
+			left = left.ref;
+			right = right.ref;
+		}
+		newNode.ref = right;
+		left.ref = newNode;
+	}
 	public static void main(String[] args) {
 		LinkedList list = new LinkedList();
 		System.out.println("Welcome to LinkedList program");
@@ -121,6 +144,12 @@ public class LinkedList {
 		System.out.println("Enter element to search in linked list: ");
 		int input = sc.nextInt();
 		System.out.println(list.searchElement(input));
+		System.out.println("Enter element after which you want to add: ");
+		int element = sc.nextInt();
+		System.out.println("Enter value to add: ");
+		int value = sc.nextInt();
+		list.insertElement(element,value);
+		list.display();
 	}
 
 }
